@@ -27,6 +27,14 @@ const dataFetched = (text) => {
     document.getElementById('result').innerHTML = text;
 }
 
+const tweet = () => {
+    var updatedTweet = document.getElementById('result').innerHTML;
+    var urlEncodedUpdatedTweet = encodeURIComponent(updatedTweet);
+    var url = 'https://twitter.com/intent/tweet?text=' + urlEncodedUpdatedTweet;
+    var win = window.open(url, '_blank');
+    win.focus();
+}
+
 const fetchData = (value) => {
     const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/rephrase';
     fetch(apiUrl, {
