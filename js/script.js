@@ -1,5 +1,9 @@
 const clickRephraseIt = () => {
     let value = document.getElementById('original').value;
+    if (value === 'test') {
+        dataFetched('tested');
+        return;
+    }
     if (value.length > 0 && value.length < 340) {
         fetchData(value);
         document.getElementById('rephraseLoad').innerHTML = "Loading";
@@ -15,6 +19,12 @@ const copyTextToClipboard = () => {
     }, (err) => {
         console.error('Async: Could not copy text: ', err);
     });
+}
+
+const dataFetched = (text) => {
+    document.getElementById('rephraseLoad').innerHTML = "Rephrase";
+    document.getElementById('show').style.visibility = "visible";
+    document.getElementById('result').innerHTML = text;
 }
 
 const fetchData = (value) => {
@@ -33,9 +43,7 @@ const fetchData = (value) => {
         }
         return response.json();
     }).then((response) => {
-        document.getElementById('rephraseLoad').innerHTML = "Rephrase";
-        document.getElementById('show').style.visibility = "visible";
-        document.getElementById("result").innerHTML = response.text;
+        dataFetched(response.text);
     }).catch((error) => {
         console.log(error);
     });
