@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Bahiana
+- Font Author: Copyright 2016 The Bahiana Project Authors (omnibus.type@gmail.com)
+- Font Source: http://fonts.gstatic.com/s/bahiana/v19/uU9PCBUV4YenPWJU7xPb3vyHmlI.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
