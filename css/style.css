@@ -162,3 +162,10 @@ p, p#result {
         height: 150px;
     }
 }
+
+#count_message {
+    margin-top: -30px;
+    margin-right: 10px;
+    float: right;
+    color: #808080
+}

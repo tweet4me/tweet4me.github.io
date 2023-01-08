@@ -4,7 +4,7 @@ const clickRephraseIt = () => {
         dataFetched('tested');
         return;
     }
-    if (value.length > 0 && value.length < 340) {
+    if (value.length > 0) {
         fetchData(value);
         setLoadingState();
     } else {
@@ -18,8 +18,13 @@ const setLoadingState = () => {
 }
 
 const setNormalState = () => {
-    document.getElementById('rephraseLoad').innerHTML = "Rephrase";
+    document.getElementById('rephraseLoad').innerHTML = 'Rephrase';
     document.getElementById('rephraseLoad').disabled = false;
+}
+
+const updateCharactersCount = () => {
+    var textLength = document.getElementById('original').value.length;
+    document.getElementById('count_message').innerHTML = textLength + ' / ' + 280;
 }
 
 const copyTextToClipboard = () => {
