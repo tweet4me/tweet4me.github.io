@@ -6,10 +6,20 @@ const clickRephraseIt = () => {
     }
     if (value.length > 0 && value.length < 340) {
         fetchData(value);
-        document.getElementById('rephraseLoad').innerHTML = "Loading";
+        setLoadingState();
     } else {
         return;
     }
+}
+
+const setLoadingState = () => {
+    document.getElementById('rephraseLoad').innerHTML = 'Loading';
+    document.getElementById('rephraseLoad').disabled = true;
+}
+
+const setNormalState = () => {
+    document.getElementById('rephraseLoad').innerHTML = "Rephrase";
+    document.getElementById('rephraseLoad').disabled = false;
 }
 
 const copyTextToClipboard = () => {
@@ -22,7 +32,6 @@ const copyTextToClipboard = () => {
 }
 
 const dataFetched = (text) => {
-    document.getElementById('rephraseLoad').innerHTML = "Rephrase";
     document.getElementById('show').style.visibility = "visible";
     document.getElementById('result').innerHTML = text;
 }
@@ -52,8 +61,10 @@ const fetchData = (value) => {
         return response.json();
     }).then((response) => {
         dataFetched(response.text);
+        setNormalState();
     }).catch((error) => {
         console.log(error);
+        setNormalState();
     });
 }
 
