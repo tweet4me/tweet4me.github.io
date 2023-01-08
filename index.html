@@ -28,49 +28,52 @@
 </head>
 
 <body>
-    <header class="masthead">
-        <div class="container h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center">
+    <div class="full-screen-bg d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row align-items-center justify-content-center ">
                 <!-- Title, header -->
-                <div class="col-lg-8 align-self-end text-center">
-                    <h1 class="text-white font-weight-bold">Tweet For Me</h1>
+                <div class="align-self-end text-center">
+                    <h1 class="text-white-75 font-weight-bold">Tweet For Me</h1>
                     <hr class="divider" />
                 </div>
-                <div class="col-lg-8 align-self-baseline text-center">
+                <div class="text-center">
                     <p class="text-white-75"><b>T4M</b> can rephrase your tweet as famous person would construct it</p>
                 </div>
                 <!-- Input section -->
-                <div class="col-lg-8 align-self-baseline">
-                    <!-- <h1>Original Tweet</h1> -->
-                    <div class="form-group">
+                <div>
+                    <div class="form-group ">
                         <textarea type="text" id="original" name="original" placeholder="Type what you'd like to tweet"
-                            class="form-control mt-2 bg-light" rows="5" id="original"></textarea>
-                        <div class="d-grid gap-2 d-md-flex justify-content-end mt-4">
+                            class="form-control mt-2 bg-light" rows="5"></textarea>
+                        <div class="d-grid gap-2 d-md-flex justify-content-center mt-4">
                             <button id="rephraseLoad" class="btn btn-primary btn-xl me-md-2" type="button"
                                 onclick="clickRephraseIt()">Rephrase</button>
-                            <!-- <button class="btn btn-primary" type="button">Button</button> -->
                         </div>
                     </div>
                 </div>
                 <!-- Show results -->
-                <div class="col-lg-8 align-self-start">
-                    <!-- <div class="spinner-border text-muted text-center"></div> -->
+                <div class="align-self-start">
                     <div id="show" style="visibility: hidden;">
-                        <!-- <h3 class="text-white font-weight-bold">Results</h3> -->
-                        <blockquote class="blockquote text-white-75 ">
-                            <p id="result" class="mb-0"></p>
-                        </blockquote>
-                        <button class="btn btn-primary btn-sm me-md-2 float-end" onclick="tweet()">
-                            <span class="glyphicon glyphicon-copy"></span> Tweet
-                        </button>
-                        <button class="btn btn-primary btn-sm me-md-2 float-end" onclick="copyTextToClipboard()">
-                            <span class="glyphicon glyphicon-copy"></span> Copy
-                        </button>
+                        <figure>
+                            <blockquote class="blockquote text-white-75">
+                              <p id="result"></p>
+                            </blockquote>
+                            <figcaption id="result" class="blockquote-footer">
+                               <cite title="Source Title">Source Title</cite>
+                            </figcaption>
+                            <button class="btn btn-primary btn-sm me-md-2 float-end" onclick="tweet()">
+                                <span class="glyphicon glyphicon-copy"></span> Tweet
+                            </button>
+                            <button class="btn btn-primary btn-sm me-md-2 float-end" onclick="copyTextToClipboard()">
+                                <span class="glyphicon glyphicon-copy"></span> Copy
+                            </button>
+                          </figure>
+
+                        
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 </body>
 
 </html>
