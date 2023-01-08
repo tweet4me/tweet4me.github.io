@@ -72,8 +72,9 @@ const populateSelect = (listOfTemplates) => {
 const fetchData = (value) => {
     const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/rephrase';
     const requestBody = {
-        "text": value,
-        "template_name": getSelectedTemplate()
+        'text': value,
+        'template_name': getSelectedTemplate(),
+        'recaptcha_token': window.recaptchaToken
     };
     fetch(apiUrl, {
         method: 'POST',
@@ -97,6 +98,14 @@ const fetchData = (value) => {
     });
 }
 
+const requestRecaptcha = () => {
+    grecaptcha.ready(() => {
+        grecaptcha.execute('6LcCEdkjAAAAAGiq9C89dGK2VZ1RDgvtj4pCuXEk', {action: 'send_request'}).then((token) => {
+            window.recaptchaToken = token;
+        });
+    });
+}
+
 window.onload = () => {
     const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/templates';
     fetch(apiUrl, {
@@ -116,11 +125,5 @@ window.onload = () => {
     }).catch((error) => {
         console.log(error);
     });
+    requestRecaptcha();
 };
-
-grecaptcha.ready(() => {
-    grecaptcha.execute('6LcCEdkjAAAAAGiq9C89dGK2VZ1RDgvtj4pCuXEk', {action: 'send_request'}).then((token) => {
-      document.getElementById('send-request-button').disabled = false;
-      recaptchaToken = token;
-    });
-  });
