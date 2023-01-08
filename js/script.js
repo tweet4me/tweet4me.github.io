@@ -36,9 +36,15 @@ const copyTextToClipboard = () => {
     });
 }
 
+const getSelectedTemplate = () => {
+    var select = document.getElementById('template-select');
+    return select.value;
+}
+
 const dataFetched = (text) => {
     document.getElementById('show').style.visibility = "visible";
     document.getElementById('result').innerHTML = text;
+    document.getElementById('s-title').innerHTML = getSelectedTemplate();
 }
 
 const tweet = () => {
@@ -49,15 +55,33 @@ const tweet = () => {
     win.focus();
 }
 
+const populateSelect = (listOfTemplates) => {
+    var select = document.getElementById('template-select');
+    select.innerHTML = '';
+    listOfTemplates.forEach(function(option) {
+        if (option === 'DEFAULT') {
+            return;
+        }
+        var optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.textContent = option;
+        select.appendChild(optionElement);
+    });
+}
+
 const fetchData = (value) => {
     const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/rephrase';
+    const requestBody = {
+        "text": value,
+        "template_name": getSelectedTemplate()
+    };
     fetch(apiUrl, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ "text": value })
+        body: JSON.stringify(requestBody)
     }).then((response) => {
         if (!response.ok) { // Guard clause
             console.log('Problem with response');
@@ -72,6 +96,27 @@ const fetchData = (value) => {
         setNormalState();
     });
 }
+
+window.onload = () => {
+    const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/templates';
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then((response) => {
+        if (!response.ok) { // Guard clause
+            console.log('Problem with response');
+            return;
+        }        
+        return response.text();
+    }).then(json => {
+        var items = JSON.parse(json);
+        populateSelect(items);
+    }).catch((error) => {
+        console.log(error);
+    });
+};
 
 grecaptcha.ready(() => {
     grecaptcha.execute('6LcCEdkjAAAAAGiq9C89dGK2VZ1RDgvtj4pCuXEk', {action: 'send_request'}).then((token) => {
