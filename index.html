@@ -4,6 +4,10 @@
 
 <head>
     <title>Tweet for Me</title>
+    <!-- Viewport is used when rendering responsive pages and is therefore 
+        mostly used when dealing with mobile websites -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.svg" />
@@ -50,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Show results -->
+                <!-- Show results section -->
                 <div class="align-self-start">
                     <div id="show" style="visibility: hidden;">
                         <figure>
@@ -60,15 +64,13 @@
                             <figcaption id="result" class="blockquote-footer">
                                <cite title="Source Title">Source Title</cite>
                             </figcaption>
-                            <button class="btn btn-primary btn-sm me-md-2 float-end" onclick="tweet()">
+                            <button class="btn btn-primary btn-sm me-2 float-end" onclick="tweet()">
                                 <span class="glyphicon glyphicon-copy"></span> Tweet
                             </button>
-                            <button class="btn btn-primary btn-sm me-md-2 float-end" onclick="copyTextToClipboard()">
+                            <button class="btn btn-primary btn-sm me-2 float-end" onclick="copyTextToClipboard()">
                                 <span class="glyphicon glyphicon-copy"></span> Copy
                             </button>
                           </figure>
-
-                        
                     </div>
                 </div>
             </div>
