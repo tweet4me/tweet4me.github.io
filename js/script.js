@@ -65,8 +65,15 @@ const populateSelect = (listOfTemplates) => {
         var optionElement = document.createElement('option');
         optionElement.value = option;
         optionElement.textContent = option;
+        if (window.defaultTemplateName === option) {
+            optionElement.selected = true;
+        }
         select.appendChild(optionElement);
     });
+}
+
+const saveDefaultTemplateName = (templateName) => {
+    window.defaultTemplateName = templateName;
 }
 
 const fetchData = (value) => {
@@ -106,9 +113,9 @@ const requestRecaptcha = () => {
     });
 }
 
-window.onload = () => {
-    const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/templates';
-    fetch(apiUrl, {
+const requestGetOnBackend = (path, requestHandler) => {
+    const apiUrl = 'https://retweet-ewn37fowka-uc.a.run.app/' + path;
+    return fetch(apiUrl, {
         method: 'GET',
         headers: {
             'Accept': 'application/json'
@@ -121,9 +128,13 @@ window.onload = () => {
         return response.text();
     }).then(json => {
         var items = JSON.parse(json);
-        populateSelect(items);
-    }).catch((error) => {
-        console.log(error);
+        requestHandler(items);
+    });
+}
+
+window.onload = () => {
+    requestGetOnBackend('/templates/DEFAULT', saveDefaultTemplateName).then(() => {
+        requestGetOnBackend('/templates', populateSelect);
     });
     requestRecaptcha();
 };
