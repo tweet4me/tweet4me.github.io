@@ -24,7 +24,7 @@ const setNormalState = () => {
 
 const updateCharactersCount = () => {
     var textLength = document.getElementById('original').value.length;
-    document.getElementById('count_message').innerHTML = textLength + ' / ' + 280;
+    document.getElementById('count_message').innerHTML = textLength + ' / ' + 500;
 }
 
 const copyTextToClipboard = () => {
